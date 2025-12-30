@@ -41,110 +41,84 @@ export function useUsers() {
 
 export default function CodePlayground() {
   const [activeExample, setActiveExample] = useState(0);
-  const [displayedCode, setDisplayedCode] = useState("");
-
-  useEffect(() => {
-    const code = codeExamples[activeExample].code;
-    let i = 0;
-
-    const timer = setInterval(() => {
-      if (i < code.length) {
-        setDisplayedCode(code.slice(0, i + 1));
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 20);
-
-    return () => clearInterval(timer);
-  }, [activeExample]);
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-black to-gray-900">
+    <section className="py-32 px-4 bg-black">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">
-            Code That Speaks
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-thin text-white mb-6">
+            Code that just works
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            See how TanStackBoilerplate makes complex things simple
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light">
+            Type-safe, performant, and developer-friendly by default
           </p>
         </div>
 
-        <div className="relative">
-          {/* Background glow */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-green-400/20 to-cyan-400/20 rounded-2xl blur-2xl" />
+        <div className="relative max-w-5xl mx-auto">
+          {/* Isometric code panel */}
+          <div className="relative">
+            {/* Shadow */}
+            <div className="absolute top-6 left-6 w-full h-full bg-gray-950 rounded-2xl -z-10" />
 
-          {/* Main code block */}
-          <div className="relative bg-gray-900 rounded-xl border border-gray-800 overflow-hidden shadow-2xl">
-            {/* Tabs */}
-            <div className="flex gap-2 px-4 py-3 bg-gray-800 border-b border-gray-700">
-              {codeExamples.map((example, index) => (
-                <button
-                  key={example.title}
-                  onClick={() => setActiveExample(index)}
-                  className={`px-4 py-2 rounded-lg font-mono text-sm transition-all duration-300 ${
-                    activeExample === index
-                      ? "bg-green-400/20 text-green-400 border border-green-400/50"
-                      : "text-gray-400 hover:text-gray-300 hover:bg-gray-700/50"
-                  }`}
-                >
-                  {example.title}
-                </button>
-              ))}
-            </div>
-
-            {/* Code content */}
-            <div className="relative p-8">
-              {/* Line numbers */}
-              <div className="absolute left-0 top-8 bottom-0 w-12 flex flex-col items-end pr-4 text-gray-600 font-mono text-sm border-r border-gray-800">
-                {displayedCode.split('\n').map((_, i) => (
-                  <div key={i} className="leading-6">
-                    {i + 1}
-                  </div>
+            {/* Main panel */}
+            <div className="relative bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden">
+              {/* Clean tabs */}
+              <div className="flex gap-1 px-2 py-2 bg-gray-950 border-b border-gray-800">
+                {codeExamples.map((example, index) => (
+                  <button
+                    key={example.title}
+                    onClick={() => setActiveExample(index)}
+                    className={`px-6 py-3 rounded-lg font-mono text-sm transition-all duration-300 ${
+                      activeExample === index
+                        ? "bg-gray-800 text-white border border-gray-700"
+                        : "text-gray-500 hover:text-gray-300 hover:bg-gray-800/50"
+                    }`}
+                  >
+                    {example.title}
+                  </button>
                 ))}
               </div>
 
-              {/* Code */}
-              <div className="ml-12 font-mono text-sm overflow-x-auto">
-                <pre className="text-gray-300 whitespace-pre-wrap">
-                  {displayedCode}
-                  <span className="inline-block w-2 h-5 bg-green-400 ml-1 animate-pulse" />
-                </pre>
+              {/* Code content */}
+              <div className="p-12">
+                <div className="flex items-start gap-4">
+                  {/* Line numbers */}
+                  <div className="text-gray-600 font-mono text-sm leading-relaxed select-none">
+                    {codeExamples[activeExample].code.split('\n').map((_, i) => (
+                      <div key={i} className="text-right pr-4">
+                        {i + 1}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Code */}
+                  <div className="flex-1 font-mono text-sm leading-relaxed overflow-x-auto">
+                    <pre className="text-gray-300 whitespace-pre">
+                      {codeExamples[activeExample].code}
+                    </pre>
+                  </div>
+                </div>
               </div>
             </div>
-
-            {/* Bottom gradient */}
-            <div className="h-1 bg-gradient-to-r from-green-400 to-cyan-400" />
           </div>
 
-          {/* Floating elements */}
-          <div className="absolute -top-4 -right-4 w-24 h-24 bg-green-400/10 rounded-full blur-xl animate-pulse" />
-          <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-cyan-400/10 rounded-full blur-xl animate-pulse delay-1000" />
-        </div>
-
-        {/* Features */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center p-6">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-2xl">
-              ⚡
+          {/* Features below */}
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-8 border border-gray-800 rounded-2xl bg-gray-900/20">
+              <div className="text-3xl mb-4 opacity-80">⚡</div>
+              <h3 className="text-lg font-medium text-white mb-2">Lightning Fast</h3>
+              <p className="text-gray-500 text-sm">Optimized builds with Vite 8 and Rolldown</p>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-white">Lightning Fast</h3>
-            <p className="text-gray-400">Optimized builds with Vite 8 and Rolldown</p>
-          </div>
-          <div className="text-center p-6">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center text-2xl">
-              🛡️
+            <div className="text-center p-8 border border-gray-800 rounded-2xl bg-gray-900/20">
+              <div className="text-3xl mb-4 opacity-80">🛡️</div>
+              <h3 className="text-lg font-medium text-white mb-2">Type Safe</h3>
+              <p className="text-gray-500 text-sm">End-to-end TypeScript with zero config</p>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-white">Type Safe</h3>
-            <p className="text-gray-400">End-to-end TypeScript with zero config</p>
-          </div>
-          <div className="text-center p-6">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center text-2xl">
-              🎯
+            <div className="text-center p-8 border border-gray-800 rounded-2xl bg-gray-900/20">
+              <div className="text-3xl mb-4 opacity-80">🎯</div>
+              <h3 className="text-lg font-medium text-white mb-2">Production Ready</h3>
+              <p className="text-gray-500 text-sm">Deploy anywhere with Nitro v3</p>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-white">Production Ready</h3>
-            <p className="text-gray-400">Deploy anywhere with Nitro v3</p>
           </div>
         </div>
       </div>

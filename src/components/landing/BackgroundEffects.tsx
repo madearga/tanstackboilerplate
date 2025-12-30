@@ -18,71 +18,47 @@ export default function BackgroundEffects() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Floating orbs
-    const orbs = Array.from({ length: 15 }, () => ({
+    // Subtle floating elements - more minimal
+    const elements = Array.from({ length: 5 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      size: Math.random() * 80 + 20,
-      speedX: (Math.random() - 0.5) * 0.5,
-      speedY: (Math.random() - 0.5) * 0.5,
-      color: Math.random() > 0.5 ? "#00F5FF" : "#CCFF00",
-      opacity: Math.random() * 0.3 + 0.1,
+      size: Math.random() * 200 + 100,
+      speedX: (Math.random() - 0.5) * 0.2,
+      speedY: (Math.random() - 0.5) * 0.2,
+      opacity: Math.random() * 0.05 + 0.02,
     }));
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw grid pattern
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
-      ctx.lineWidth = 1;
-      const gridSize = 50;
-      for (let x = 0; x < canvas.width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-      }
-      for (let y = 0; y < canvas.height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-      }
+      // Draw subtle radial gradients
+      elements.forEach((element) => {
+        element.x += element.speedX;
+        element.y += element.speedY;
 
-      // Update and draw orbs
-      orbs.forEach((orb) => {
-        orb.x += orb.speedX;
-        orb.y += orb.speedY;
+        // Wrap around edges
+        if (element.x < -element.size) element.x = canvas.width + element.size;
+        if (element.x > canvas.width + element.size) element.x = -element.size;
+        if (element.y < -element.size) element.y = canvas.height + element.size;
+        if (element.y > canvas.height + element.size) element.y = -element.size;
 
-        // Bounce off edges
-        if (orb.x < 0 || orb.x > canvas.width) orb.speedX *= -1;
-        if (orb.y < 0 || orb.y > canvas.height) orb.speedY *= -1;
-
-        // Draw orb
+        // Draw subtle glow
         const gradient = ctx.createRadialGradient(
-          orb.x,
-          orb.y,
+          element.x,
+          element.y,
           0,
-          orb.x,
-          orb.y,
-          orb.size
+          element.x,
+          element.y,
+          element.size
         );
-        gradient.addColorStop(0, orb.color + "80");
-        gradient.addColorStop(0.5, orb.color + "20");
-        gradient.addColorStop(1, orb.color + "00");
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${element.opacity})`);
+        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${element.opacity * 0.3})`);
+        gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(orb.x, orb.y, orb.size, 0, Math.PI * 2);
+        ctx.arc(element.x, element.y, element.size, 0, Math.PI * 2);
         ctx.fill();
-
-        // Draw center dot
-        ctx.fillStyle = orb.color;
-        ctx.globalAlpha = orb.opacity;
-        ctx.beginPath();
-        ctx.arc(orb.x, orb.y, 2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
       });
 
       requestAnimationFrame(animate);
@@ -99,10 +75,10 @@ export default function BackgroundEffects() {
     <>
       <canvas
         ref={canvasRef}
-        className="fixed inset-0 -z-10 opacity-30"
-        style={{ background: "radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000 100%)" }}
+        className="fixed inset-0 -z-10"
+        style={{ background: "#000000" }}
       />
-      <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-black to-black" />
+      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-black via-black to-black" />
     </>
   );
 }
