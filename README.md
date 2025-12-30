@@ -1,6 +1,6 @@
 # [React TanStackBoilerplate]
 
-A minimal starter template for 🏝️ TanStack Start.
+Template starter minimal untuk 🏝️ TanStack Start.
 
 - [React 19](https://react.dev) + [React Compiler](https://react.dev/learn/react-compiler)
 - TanStack [Start](https://tanstack.com/start/latest) + [Router](https://tanstack.com/router/latest) + [Query](https://tanstack.com/query/latest)
@@ -9,9 +9,9 @@ A minimal starter template for 🏝️ TanStack Start.
 - [Drizzle ORM](https://orm.drizzle.team/) + PostgreSQL
 - [Better Auth](https://www.better-auth.com/)
 
-## Getting Started
+## Memulai
 
-1. Clone this repository:
+1. Clone repository ini:
 
    ```bash
    git clone https://github.com/madearga/tanstackboilerplate.git myapp
@@ -24,9 +24,9 @@ A minimal starter template for 🏝️ TanStack Start.
    pnpm install
    ```
 
-3. Create a `.env` file based on [`.env.example`](./.env.example).
+3. Buat file `.env` berdasarkan [`.env.example`](./.env.example).
 
-4. Push the schema to your database with drizzle-kit:
+4. Push schema ke database dengan drizzle-kit:
 
    ```bash
    pnpm db push
@@ -34,50 +34,50 @@ A minimal starter template for 🏝️ TanStack Start.
 
    https://orm.drizzle.team/docs/migrations
 
-5. Run the development server:
+5. Jalankan development server:
 
    ```bash
    pnpm dev
    ```
 
-   The development server should now be running at [http://localhost:3000](http://localhost:3000).
+   Development server sekarang berjalan di [http://localhost:3000](http://localhost:3000).
 
-## Deploying to production
+## Deploy ke Production
 
-The [vite config](./vite.config.ts#L12-L13) is currently configured to use [Nitro v3](https://v3.nitro.build) (nightly) to deploy on Vercel, but can be easily switched to other providers.
+Konfigurasi [vite](./vite.config.ts#L12-L13) saat ini dikonfigurasi untuk menggunakan [Nitro v3](https://v3.nitro.build) (nightly) untuk deploy ke Vercel, namun dapat dengan mudah diganti ke provider lain.
 
-Refer to the [TanStack Start hosting docs](https://tanstack.com/start/latest/docs/framework/react/guide/hosting) for deploying to other platforms.
+Lihat [dokumentasi hosting TanStack Start](https://tanstack.com/start/latest/docs/framework/react/guide/hosting) untuk deploy ke platform lain.
 
-## Issue watchlist
+## Daftar Isu yang Perlu Dipantau
 
-- [Router/Start issues](https://github.com/TanStack/router/issues) - TanStack Start is in RC.
-- [Devtools releases](https://github.com/TanStack/devtools/releases) - TanStack Devtools is in alpha and may still have breaking changes.
-- [Vite 8 beta](https://vite.dev/blog/announcing-vite8-beta) - We're using Vite 8 beta which is powered by Rolldown.
-- [Nitro v3 nightly](https://v3.nitro.build/docs/nightly) - The template is configured with Nitro v3 nightly by default.
+- [Router/Start issues](https://github.com/TanStack/router/issues) - TanStack Start masih dalam tahap RC.
+- [Devtools releases](https://github.com/TanStack/devtools/releases) - TanStack Devtools masih dalam alpha dan mungkin masih ada breaking changes.
+- [Vite 8 beta](https://vite.dev/blog/announcing-vite8-beta) - Kami menggunakan Vite 8 beta yang menggunakan Rolldown.
+- [Nitro v3 nightly](https://v3.nitro.build/docs/nightly) - Template ini dikonfigurasi dengan Nitro v3 nightly secara default.
 
-## Goodies
+## Fitur Tambahan
 
 #### Scripts
 
-We use **pnpm** by default, but you can modify these scripts in [package.json](./package.json) to use your preferred package manager.
+Kami menggunakan **pnpm** secara default, namun Anda dapat memodifikasi script ini di [package.json](./package.json) untuk menggunakan package manager yang Anda inginkan.
 
-- **`auth:generate`** - Regenerate the [auth db schema](./src/lib/db/schema/auth.schema.ts) if you've made changes to your Better Auth [config](./src/lib/auth/auth.ts).
-- **`db`** - Run [drizzle-kit](https://orm.drizzle.team/docs/kit-overview) commands. (e.g. `pnpm db generate`, `pnpm db studio`)
-- **`ui`** - The shadcn/ui CLI. (e.g. `pnpm ui add button`)
-- **`format`**, **`lint`**, **`check-types`** - Run Prettier, ESLint, and check TypeScript types respectively.
-  - **`check`** - Run all three above. (e.g. `pnpm check`)
+- **`auth:generate`** - Regenerate [auth db schema](./src/lib/db/schema/auth.schema.ts) jika Anda telah membuat perubahan pada konfigurasi Better Auth [config](./src/lib/auth/auth.ts).
+- **`db`** - Jalankan perintah [drizzle-kit](https://orm.drizzle.team/docs/kit-overview). (contoh: `pnpm db generate`, `pnpm db studio`)
+- **`ui`** - CLI shadcn/ui. (contoh: `pnpm ui add button`)
+- **`format`**, **`lint`**, **`check-types`** - Menjalankan Prettier, ESLint, dan memeriksa tipe TypeScript secara berturut-turut.
+  - **`check`** - Menjalankan ketiga script di atas. (contoh: `pnpm check`)
 - **`deps`** - Selectively upgrade dependencies via taze.
 
 #### Utilities
 
-- [`auth/middleware.ts`](./src/lib/auth/middleware.ts) - Sample middleware for forcing authentication on server functions.
-- [`theme-toggle.tsx`](./src/components/theme-toggle.tsx), [`theme-provider.tsx`](./src/components/theme-provider.tsx) - A theme toggle and provider for toggling between light and dark mode.
+- [`auth/middleware.ts`](./src/lib/auth/middleware.ts) - Contoh middleware untuk memaksa autentikasi pada server functions.
+- [`theme-toggle.tsx`](./src/components/theme-toggle.tsx), [`theme-provider.tsx`](./src/components/theme-provider.tsx) - Komponen toggle tema dan provider untuk beralih antara mode terang dan gelap.
 
-## License
+## Lisensi
 
-Code in this template is public domain via [Unlicense](./LICENSE). Feel free to remove or replace for your own project.
+Kode dalam template ini adalah domain publik melalui [Unlicense](./LICENSE). Jangan sungkan untuk menghapus atau mengganti untuk project Anda sendiri.
 
-## Also check out
+## Lainnya yang Perlu Dicek
 
-- [@tanstack/create-start](https://github.com/TanStack/create-tsrouter-app/blob/main/cli/ts-create-start/README.md) - The official CLI tool from the TanStack team to create Start projects.
-- [awesome-tanstack-start](https://github.com/Balastrong/awesome-tanstack-start) - A curated list of awesome resources for TanStack Start.
+- [@tanstack/create-start](https://github.com/TanStack/create-tsrouter-app/blob/main/cli/ts-create-start/README.md) - Tool CLI resmi dari tim TanStack untuk membuat project Start.
+- [awesome-tanstack-start](https://github.com/Balastrong/awesome-tanstack-start) - Daftar kurasi resource awesome untuk TanStack Start.
