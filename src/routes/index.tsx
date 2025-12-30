@@ -26,12 +26,46 @@ function HomePage() {
 
       {/* Landing Page Sections */}
       <HeroSection />
+
+      {/* Sign-in CTA Section */}
+      <section className="py-24 px-4 bg-black border-t border-gray-900">
+        <div className="container mx-auto max-w-4xl">
+          <div className="relative p-12 border border-gray-800 rounded-3xl bg-gray-900/30 backdrop-blur-sm text-center">
+            <h3 className="text-2xl md:text-3xl font-thin text-white mb-4">
+              Ready to build faster?
+            </h3>
+            <p className="text-gray-400 font-light mb-8 max-w-2xl mx-auto">
+              Join thousands of developers using TanStackBoilerplate to ship production-ready apps in record time
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button
+                render={<Link to="/login" />}
+                className="w-full sm:w-auto px-8 py-4 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-colors"
+                size="lg"
+                nativeButton={false}
+              >
+                Sign In
+              </Button>
+              <Button
+                render={<Link to="/signup" />}
+                variant="outline"
+                className="w-full sm:w-auto px-8 py-4 border border-gray-700 text-gray-300 font-medium rounded-lg hover:border-gray-600 hover:bg-gray-900/50 transition-colors"
+                size="lg"
+                nativeButton={false}
+              >
+                Create Account
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <TechStackShowcase />
       <CodePlayground />
       <FeatureGrid />
       <GettingStarted />
 
-      {/* User Authentication Section */}
+      {/* User Authentication Section - For logged in users */}
       <section className="py-24 px-4 bg-gradient-to-t from-black to-gray-900">
         <div className="container mx-auto max-w-4xl text-center">
           <Suspense fallback={<div className="py-6">Loading user...</div>}>

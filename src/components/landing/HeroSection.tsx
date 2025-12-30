@@ -1,3 +1,6 @@
+import { Link } from "@tanstack/react-router";
+import { Button } from "~/components/ui/button";
+
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4">
@@ -13,16 +16,16 @@ export default function HeroSection() {
             Modern, type-safe, and production-ready out of the box.
           </p>
 
-          {/* Simple CTA - no flashy buttons */}
+          {/* Simple CTA - direct to sign in */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
-            <input
-              type="email"
-              placeholder="Enter your email to get started"
-              className="w-full sm:w-96 px-6 py-4 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gray-600 transition-colors"
-            />
-            <button className="w-full sm:w-auto px-8 py-4 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-colors">
+            <Button
+              render={<Link to="/login" />}
+              className="w-full sm:w-auto px-10 py-4 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-colors"
+              size="lg"
+              nativeButton={false}
+            >
               Get Started
-            </button>
+            </Button>
           </div>
 
           {/* Subtle feature highlights */}
