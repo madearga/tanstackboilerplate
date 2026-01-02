@@ -49,7 +49,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 transform border-r border-gray-800 bg-gray-950/50 backdrop-blur-sm transition-transform duration-300 ease-in-out lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 w-64 transform border-r border-gray-800 bg-gray-950 transition-transform duration-300 ease-in-out lg:translate-x-0",
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
@@ -99,7 +99,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Top bar */}
-        <header className="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur">
+        <header className="sticky top-0 z-40 border-b border-gray-800 bg-gray-950">
           <div className="flex h-16 items-center gap-4 px-4 sm:gap-6 sm:px-6">
             <Button
               variant="ghost"

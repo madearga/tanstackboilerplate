@@ -26,8 +26,8 @@ export function StatsCard({
     <div
       className={cn(
         "group relative overflow-hidden rounded-2xl border border-gray-800",
-        "bg-gray-900/20 backdrop-blur-sm transition-all duration-300",
-        "hover:bg-gray-900/30 hover:border-gray-700",
+        "bg-gray-900/50 transition-all duration-300",
+        "hover:bg-gray-900/60 hover:border-gray-700",
         "hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)]",
         className
       )}

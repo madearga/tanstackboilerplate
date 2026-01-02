@@ -106,7 +106,7 @@ export function ContentTable() {
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl border border-gray-800 bg-gray-900/20 backdrop-blur-sm overflow-hidden">
+      <div className="rounded-2xl border border-gray-800 bg-gray-900/50 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>

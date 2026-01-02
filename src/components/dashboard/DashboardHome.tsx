@@ -64,7 +64,7 @@ export function DashboardHome() {
 
         {/* Charts section */}
         <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border border-gray-800 bg-gray-900/20 backdrop-blur-sm p-6">
+          <div className="rounded-2xl border border-gray-800 bg-gray-900/50 p-6">
             <div className="mb-6 space-y-1">
               <h3 className="text-lg font-semibold text-white">Views Over Time</h3>
               <p className="text-sm text-gray-400">Last 14 days performance</p>
@@ -72,7 +72,7 @@ export function DashboardHome() {
             <ViewsLineChart />
           </div>
 
-          <div className="rounded-2xl border border-gray-800 bg-gray-900/20 backdrop-blur-sm p-6">
+          <div className="rounded-2xl border border-gray-800 bg-gray-900/50 p-6">
             <div className="mb-6 space-y-1">
               <h3 className="text-lg font-semibold text-white">Content by Category</h3>
               <p className="text-sm text-gray-400">Distribution of published posts</p>
@@ -90,7 +90,7 @@ export function DashboardHome() {
 
           {/* Activity feed */}
           <div className="lg:col-span-1">
-            <div className="rounded-2xl border border-gray-800 bg-gray-900/20 backdrop-blur-sm p-6">
+            <div className="rounded-2xl border border-gray-800 bg-gray-900/50 p-6">
               <ActivityFeed />
             </div>
           </div>
@@ -98,7 +98,7 @@ export function DashboardHome() {
 
         {/* Additional charts */}
         <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border border-gray-800 bg-gray-900/20 backdrop-blur-sm p-6">
+          <div className="rounded-2xl border border-gray-800 bg-gray-900/50 p-6">
             <div className="mb-6 space-y-1">
               <h3 className="text-lg font-semibold text-white">User Distribution</h3>
               <p className="text-sm text-gray-400">Users by role</p>
@@ -106,7 +106,7 @@ export function DashboardHome() {
             <UserRolePieChart />
           </div>
 
-          <div className="rounded-2xl border border-gray-800 bg-gray-900/20 backdrop-blur-sm p-6">
+          <div className="rounded-2xl border border-gray-800 bg-gray-900/50 p-6">
             <div className="mb-6 space-y-1">
               <h3 className="text-lg font-semibold text-white">Quick Actions</h3>
               <p className="text-sm text-gray-400">Common tasks</p>
