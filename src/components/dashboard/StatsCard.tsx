@@ -25,61 +25,62 @@ export function StatsCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-gray-800",
-        "bg-gray-900/50 transition-all duration-300",
-        "hover:bg-gray-900/60 hover:border-gray-700",
-        "hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)]",
+        "group relative overflow-hidden rounded-3xl border",
+        "bg-gradient-to-br from-gray-900/80 via-gray-900/60 to-gray-900/40",
+        "backdrop-blur-sm transition-all duration-500",
+        "hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(0,0,0,0.5)]",
         className
       )}
     >
-      {/* Background gradient effect */}
-      <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5" />
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5" />
       </div>
 
-      <div className="relative flex items-start justify-between p-6">
-        <div className="flex-1">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="rounded-xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 p-3 text-cyan-400">
-              {icon}
+      {/* Shimmer effect */}
+      <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_2s_infinite]">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      </div>
+
+      <div className="relative flex flex-col p-6">
+        <div className="flex items-start justify-between mb-4">
+          <div className="rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-3 ring-1 ring-white/5 group-hover:ring-white/10 transition-all">
+            {icon}
+          </div>
+          {change !== undefined && (
+            <div
+              className={cn(
+                "flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ring-1",
+                isPositive
+                  ? "bg-emerald-500/10 text-emerald-400 ring-emerald-500/20"
+                  : "bg-red-500/10 text-red-400 ring-red-500/20"
+              )}
+            >
+              {isPositive ? (
+                <ArrowUp className="h-3 w-3" />
+              ) : (
+                <ArrowDown className="h-3 w-3" />
+              )}
+              <span>{Math.abs(change)}%</span>
             </div>
-            <span className="text-sm font-medium text-gray-400">{title}</span>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-3xl font-bold tracking-tight text-white">
-              {value}
-            </h3>
-
-            {change !== undefined && (
-              <div className="flex items-center gap-2 text-sm">
-                <div
-                  className={cn(
-                    "flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium",
-                    isPositive
-                      ? "bg-emerald-500/10 text-emerald-400"
-                      : "bg-red-500/10 text-red-400"
-                  )}
-                >
-                  {isPositive ? (
-                    <ArrowUp className="h-3 w-3" />
-                  ) : (
-                    <ArrowDown className="h-3 w-3" />
-                  )}
-                  <span>{Math.abs(change)}%</span>
-                </div>
-                <span className="text-gray-500">from last month</span>
-              </div>
-            )}
-
-            {description && (
-              <p className="text-sm text-gray-400">{description}</p>
-            )}
-          </div>
+          )}
         </div>
 
-        {/* Decorative element */}
-        <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-cyan-500/10 to-purple-500/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-50" />
+        <div className="space-y-1">
+          <p className="text-xs font-medium uppercase tracking-wider text-gray-500">{title}</p>
+          <h3 className="text-3xl font-bold tracking-tight text-white tabular-nums">
+            {value}
+          </h3>
+          {description && (
+            <p className="text-sm text-gray-400">{description}</p>
+          )}
+          {change !== undefined && (
+            <p className="text-xs text-gray-500 mt-1">vs. last month</p>
+          )}
+        </div>
+
+        {/* Subtle glow effect on hover */}
+        <div className="absolute -bottom-16 -right-16 h-32 w-32 rounded-full bg-gradient-to-br from-white/5 to-transparent blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:opacity-100 opacity-0" />
       </div>
     </div>
   );

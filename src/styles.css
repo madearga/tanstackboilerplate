@@ -161,6 +161,12 @@
   }
 }
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* Custom utility classes */
 .animate-subtle-float {
   animation: subtle-float 8s ease-in-out infinite;
