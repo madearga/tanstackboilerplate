@@ -2,6 +2,7 @@
   "name": "tanstackboilerplate",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.34.6",
   "scripts": {
     "dev": "vite dev --port 3000",
     "build": "vite build",
