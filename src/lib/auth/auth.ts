@@ -44,9 +44,10 @@ const getAuthConfig = createServerOnlyFn(() =>
       enabled: true,
     },
 
-    experimental: {
-      // https://www.better-auth.com/docs/adapters/drizzle#joins-experimental
-      joins: true,
+    advanced: {
+      database: {
+        joins: true,
+      },
     },
   }),
 );

@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.34.6",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "vite dev --port 3000",
     "build": "vite build",
@@ -27,7 +30,7 @@
     "@tanstack/react-router-ssr-query": "^1.167.3",
     "@tanstack/react-start": "^1.168.60",
     "@vitejs/plugin-react": "^5.2.0",
-    "better-auth": "^1.4.9",
+    "better-auth": "^1.7.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.45.3",
