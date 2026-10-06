@@ -22,3 +22,7 @@ dist
 /public/build
 
 .tanstack
+
+.env
+.env*.local
+!.env.example
