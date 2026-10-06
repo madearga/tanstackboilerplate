@@ -6,13 +6,9 @@ import { ThemeToggle } from "~/components/theme-toggle";
 import { Button } from "~/components/ui/button";
 import { authQueryOptions } from "~/lib/auth/queries";
 
-// Landing page components
-import BackgroundEffects from "~/components/landing/BackgroundEffects";
 import HeroSection from "~/components/landing/HeroSection";
-import TechStackShowcase from "~/components/landing/TechStackShowcase";
-import CodePlayground from "~/components/landing/CodePlayground";
-import FeatureGrid from "~/components/landing/FeatureGrid";
-import GettingStarted from "~/components/landing/GettingStarted";
+import StackSection from "~/components/landing/StackSection";
+import StepsSection from "~/components/landing/StepsSection";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -20,85 +16,68 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden">
-      {/* Background Effects */}
-      <BackgroundEffects />
-
-      {/* Landing Page Sections */}
+    <div className="relative min-h-screen bg-neutral-950 text-neutral-100">
       <HeroSection />
+      <StepsSection />
+      <StackSection />
 
-      {/* Sign-in CTA Section */}
-      <section className="py-24 px-4 bg-black border-t border-gray-900">
-        <div className="container mx-auto max-w-4xl">
-          <div className="relative p-12 border border-gray-800 rounded-3xl bg-gray-900/30 backdrop-blur-sm text-center">
-            <h3 className="text-2xl md:text-3xl font-thin text-white mb-4">
-              Ready to build faster?
-            </h3>
-            <p className="text-gray-400 font-light mb-8 max-w-2xl mx-auto">
-              Join thousands of developers using TanStackBoilerplate to ship production-ready apps in record time
-            </p>
-            <div className="flex justify-center items-center">
-              <Button
-                render={<Link to="/login" />}
-                className="w-full sm:w-auto px-8 py-4 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-colors"
-                size="lg"
-                nativeButton={false}
-              >
-                Sign In with Google
-              </Button>
-            </div>
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl font-medium tracking-tight text-neutral-50 sm:text-3xl">
+            See the dashboard instead of reading about it.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-neutral-400">
+            Sign in with Google and the session, the database row, and the protected route
+            are already in place.
+          </p>
+          <div className="mt-8 flex justify-center">
+            <Button
+              render={<Link to="/login" />}
+              nativeButton={false}
+              size="lg"
+              className="rounded-md bg-neutral-50 px-6 py-3 text-sm font-medium text-neutral-950 transition-[transform,background-color] duration-150 ease-out hover:bg-white active:scale-[0.98]"
+            >
+              Sign in with Google
+            </Button>
           </div>
         </div>
       </section>
 
-      <TechStackShowcase />
-      <CodePlayground />
-      <FeatureGrid />
-      <GettingStarted />
+      <Suspense fallback={null}>
+        <UserAction />
+      </Suspense>
 
-      {/* User Authentication Section - For logged in users */}
-      <section className="py-24 px-4 bg-gradient-to-t from-black to-gray-900">
-        <div className="container mx-auto max-w-4xl text-center">
-          <Suspense fallback={<div className="py-6">Loading user...</div>}>
-            <UserAction />
-          </Suspense>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 px-4 border-t border-gray-800 bg-black">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-gray-400">
-              © 2024 TanStackBoilerplate. Built with ❤️ by{" "}
-              <a
-                href="https://github.com/madearga"
-                className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                madearga
-              </a>
-            </div>
-            <div className="flex items-center gap-6">
-              <a
-                href="https://github.com/madearga/tanstackboilerplate"
-                className="text-gray-400 hover:text-cyan-400 transition-colors"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://tanstack.com/start/latest"
-                className="text-gray-400 hover:text-cyan-400 transition-colors"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                TanStack Start
-              </a>
-              <ThemeToggle />
-            </div>
+      <footer className="border-t border-neutral-900 px-6 py-12">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
+          <p className="text-sm text-neutral-500">
+            © {new Date().getFullYear()} TanStackBoilerplate, built by{" "}
+            <a
+              href="https://github.com/madearga"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="text-neutral-300 transition-colors hover:text-white"
+            >
+              madearga
+            </a>
+          </p>
+          <div className="flex items-center gap-6 text-sm">
+            <a
+              href="https://github.com/madearga/tanstackboilerplate"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="text-neutral-400 transition-colors hover:text-neutral-100"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://tanstack.com/start/latest"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="text-neutral-400 transition-colors hover:text-neutral-100"
+            >
+              TanStack Start
+            </a>
+            <ThemeToggle />
           </div>
         </div>
       </footer>
@@ -109,65 +88,31 @@ function HomePage() {
 function UserAction() {
   const { data: user } = useSuspenseQuery(authQueryOptions());
 
-  if (user) {
-    return (
-      <div className="relative">
-        {/* Background glow */}
-        <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400/20 to-green-400/20 rounded-2xl blur-2xl" />
-
-        <div className="relative p-8 bg-gray-900/50 border border-gray-800 rounded-xl backdrop-blur-sm">
-          <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-green-400 bg-clip-text text-transparent">
-            Welcome back, {user.name}! 👋
-          </h3>
-          <p className="text-gray-400 mb-6">
-            You're signed in and ready to build amazing things
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              render={<Link to="/dashboard" />}
-              size="lg"
-              nativeButton={false}
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:shadow-[0_0_20px_rgba(0,245,255,0.4)]"
-            >
-              Go to Dashboard
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => {}}
-              size="lg"
-              nativeButton={false}
-            >
-              <SignOutButton />
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // The page already asks for sign-in once, above. A second invitation would be the same action twice.
+  if (!user) return null;
 
   return (
-    <div className="relative">
-      {/* Background glow */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-2xl blur-2xl" />
-
-      <div className="relative p-8 bg-gray-900/50 border border-gray-800 rounded-xl backdrop-blur-sm">
-        <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-          Ready to get started?
-        </h3>
-        <p className="text-gray-400 mb-6">
-          Sign in to access your dashboard and start building
-        </p>
-        <div className="flex justify-center">
+    <section className="border-t border-neutral-900 px-6 py-20">
+      <div className="mx-auto flex max-w-3xl flex-col items-start gap-5 rounded-lg border border-emerald-500/30 bg-neutral-900/40 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="font-mono text-[11px] tracking-[0.2em] text-emerald-400 uppercase">
+            session active
+          </p>
+          <p className="mt-2 text-base text-neutral-100">
+            Signed in as {user.name || user.email}
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
           <Button
-            render={<Link to="/login" />}
-            size="lg"
+            render={<Link to="/dashboard" />}
             nativeButton={false}
-            className="bg-gradient-to-r from-purple-500 to-pink-600 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+            className="rounded-md bg-neutral-50 px-5 py-2.5 text-sm font-medium text-neutral-950 transition-[transform,background-color] duration-150 ease-out hover:bg-white active:scale-[0.98]"
           >
-            Sign In with Google
+            Open dashboard
           </Button>
+          <SignOutButton />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

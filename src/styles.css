@@ -219,3 +219,21 @@
 ::-moz-selection {
   background: rgba(255, 255, 255, 0.15);
 }
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 14;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Static media cannot run the scroll reveals, so nothing may start hidden there. */
+@media print {
+  [data-enter],
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

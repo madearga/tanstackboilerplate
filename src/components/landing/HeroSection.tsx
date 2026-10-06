@@ -1,58 +1,74 @@
 import { Link } from "@tanstack/react-router";
+import CommandChip from "~/components/landing/CommandChip";
+import StackPanel from "~/components/landing/StackPanel";
+import { useFirstEntry, useHeroDepth } from "~/components/landing/motion";
 import { Button } from "~/components/ui/button";
 
-export default function HeroSection() {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center px-4">
-      <div className="container mx-auto max-w-4xl">
-        {/* Anti-Hero approach - minimal and confident */}
-        <div className="text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-thin tracking-tight text-white mb-8">
-            Forget everything you know about boilerplates.
-          </h1>
+const CLONE = "git clone https://github.com/madearga/tanstackboilerplate";
 
-          <p className="text-xl md:text-2xl text-gray-400 font-light mb-16 max-w-2xl mx-auto leading-relaxed">
-            TanStackBoilerplate is the last template you'll ever need.
-            Modern, type-safe, and production-ready out of the box.
+export default function HeroSection() {
+  const depth = useHeroDepth<HTMLElement>("[data-hero-panel]", "[data-hero-grid]");
+  const enter = useFirstEntry<HTMLDivElement>();
+
+  return (
+    <section
+      ref={depth}
+      className="relative isolate flex min-h-[88svh] items-center overflow-hidden border-b border-neutral-900 px-6 py-24"
+    >
+      {/* Depth layer. Further from the viewer than the panel, so it drifts slower. */}
+      <div
+        data-hero-grid
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.18] [background-image:linear-gradient(to_right,var(--color-neutral-700)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-neutral-700)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"
+      />
+
+      <div ref={enter} className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+        <div>
+          <p data-enter="body" className="mb-6 font-mono text-[11px] tracking-[0.2em] text-emerald-400 uppercase">
+            TanStack Start · Better Auth · Drizzle
           </p>
 
-          {/* Simple CTA - direct to sign in */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
+          <h1
+            data-enter="body"
+            className="text-4xl leading-[1.05] font-medium tracking-tight text-neutral-50 sm:text-5xl lg:text-6xl"
+          >
+            A starting point that is already wired.
+          </h1>
+
+          <p data-enter="body" className="mt-6 max-w-lg text-base leading-relaxed text-neutral-400">
+            Google sign-in runs against Postgres, the router is typed end to end, and CI
+            checks every pull request. Clone it and start on the product instead of the setup.
+          </p>
+
+          <div data-enter="body" className="mt-9 flex flex-wrap items-center gap-4">
             <Button
               render={<Link to="/login" />}
-              className="w-full sm:w-auto px-10 py-4 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-colors"
-              size="lg"
               nativeButton={false}
+              size="lg"
+              className="group gap-2 rounded-md bg-neutral-50 px-6 py-3 text-sm font-medium text-neutral-950 transition-[transform,background-color] duration-150 ease-out hover:bg-white active:scale-[0.98]"
             >
-              Get Started
+              Sign in with Google
+              <span aria-hidden="true" className="transition-transform duration-150 ease-out group-hover:translate-x-0.5">
+                →
+              </span>
             </Button>
+            <a
+              href="https://github.com/madearga/tanstackboilerplate"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="rounded-md px-2 py-3 text-sm text-neutral-400 transition-colors duration-150 hover:text-neutral-100"
+            >
+              Read the source
+            </a>
           </div>
 
-          {/* Subtle feature highlights */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="p-8 border border-gray-800 rounded-2xl bg-gray-900/20 backdrop-blur-sm">
-              <div className="text-4xl mb-4">⚡</div>
-              <h3 className="text-lg font-medium text-white mb-2">Lightning Fast</h3>
-              <p className="text-gray-500 text-sm">Built on Vite 8 with instant HMR</p>
-            </div>
-            <div className="p-8 border border-gray-800 rounded-2xl bg-gray-900/20 backdrop-blur-sm">
-              <div className="text-4xl mb-4">🛡️</div>
-              <h3 className="text-lg font-medium text-white mb-2">Type-Safe</h3>
-              <p className="text-gray-500 text-sm">End-to-end TypeScript coverage</p>
-            </div>
-            <div className="p-8 border border-gray-800 rounded-2xl bg-gray-900/20 backdrop-blur-sm">
-              <div className="text-4xl mb-4">🚀</div>
-              <h3 className="text-lg font-medium text-white mb-2">Production Ready</h3>
-              <p className="text-gray-500 text-sm">Deploy anywhere with Nitro v3</p>
-            </div>
+          <div data-enter="body" className="mt-10 max-w-xl">
+            <CommandChip command={CLONE} label="or start from the terminal" />
           </div>
         </div>
-      </div>
 
-      {/* Subtle scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="w-6 h-10 border border-gray-800 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-gray-600 rounded-full mt-2 animate-bounce" />
+        <div data-hero-panel data-enter="lead">
+          <StackPanel />
         </div>
       </div>
     </section>
