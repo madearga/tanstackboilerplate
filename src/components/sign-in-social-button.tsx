@@ -8,6 +8,8 @@ interface SocialLoginButtonProps {
   icon: React.ReactNode;
   disabled?: boolean;
   callbackURL: string;
+  className?: string;
+  size?: "default" | "sm" | "lg" | "icon";
 }
 
 export function SignInSocialButton(props: SocialLoginButtonProps) {
@@ -36,7 +38,8 @@ export function SignInSocialButton(props: SocialLoginButtonProps) {
   return (
     <Button
       variant="outline"
-      className="w-full"
+      className={props.className || "w-full"}
+      size={props.size || "default"}
       type="button"
       disabled={mutation.isSuccess || mutation.isPending || props.disabled}
       onClick={() => mutation.mutate()}

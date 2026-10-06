@@ -37,23 +37,14 @@ function HomePage() {
             <p className="text-gray-400 font-light mb-8 max-w-2xl mx-auto">
               Join thousands of developers using TanStackBoilerplate to ship production-ready apps in record time
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex justify-center items-center">
               <Button
                 render={<Link to="/login" />}
                 className="w-full sm:w-auto px-8 py-4 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-colors"
                 size="lg"
                 nativeButton={false}
               >
-                Sign In
-              </Button>
-              <Button
-                render={<Link to="/signup" />}
-                variant="outline"
-                className="w-full sm:w-auto px-8 py-4 border border-gray-700 text-gray-300 font-medium rounded-lg hover:border-gray-600 hover:bg-gray-900/50 transition-colors"
-                size="lg"
-                nativeButton={false}
-              >
-                Create Account
+                Sign In with Google
               </Button>
             </div>
           </div>
@@ -166,22 +157,14 @@ function UserAction() {
         <p className="text-gray-400 mb-6">
           Sign in to access your dashboard and start building
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex justify-center">
           <Button
             render={<Link to="/login" />}
             size="lg"
             nativeButton={false}
             className="bg-gradient-to-r from-purple-500 to-pink-600 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
           >
-            Sign In
-          </Button>
-          <Button
-            render={<Link to="/signup" />}
-            variant="outline"
-            size="lg"
-            nativeButton={false}
-          >
-            Create Account
+            Sign In with Google
           </Button>
         </div>
       </div>
