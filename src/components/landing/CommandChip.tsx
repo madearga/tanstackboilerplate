@@ -32,7 +32,7 @@ export default function CommandChip({ command, label }: CommandChipProps) {
         onClick={copy}
         aria-label={"Copy command: " + command}
         className={[
-          "group flex items-center justify-between gap-4 rounded-md border px-3 py-2 text-left",
+          "group flex flex-wrap items-center gap-x-4 gap-y-1 rounded-md border px-3 py-2 text-left",
           "font-mono text-[13px] transition-[transform,background-color,border-color] duration-200 ease-out",
           "active:scale-[0.99]",
           copied
@@ -44,7 +44,7 @@ export default function CommandChip({ command, label }: CommandChipProps) {
           <span className="text-neutral-600 select-none">$ </span>
           {command}
         </span>
-        <span className="flex shrink-0 items-center gap-1.5 text-[11px] tracking-wider uppercase">
+        <span className="ml-auto flex items-center gap-1.5 text-[11px] tracking-wider uppercase">
           {copied ? (
             <>
               <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true">

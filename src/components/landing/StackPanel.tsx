@@ -14,7 +14,7 @@ const STACK = [
  */
 export default function StackPanel() {
   return (
-    <figure className="overflow-hidden rounded-lg border border-neutral-800 bg-neutral-950/80 shadow-2xl shadow-black/40 backdrop-blur">
+    <figure className="overflow-hidden rounded-lg border border-neutral-700 bg-neutral-950/80 shadow-2xl shadow-black/40 backdrop-blur">
       <figcaption className="flex items-center gap-2 border-b border-neutral-800 bg-neutral-900/60 px-4 py-2.5">
         <span className="size-2.5 rounded-full bg-neutral-700" />
         <span className="size-2.5 rounded-full bg-neutral-700" />
@@ -29,7 +29,7 @@ export default function StackPanel() {
           <li key={row.name} className="flex items-baseline justify-between gap-4 px-4 py-2.5">
             <span className="font-mono text-[13px] text-neutral-200">{row.name}</span>
             <span className="flex items-baseline gap-3 text-right">
-              <span className="font-mono text-[11px] text-neutral-500">{row.detail}</span>
+              <span className="font-mono text-[11px] text-neutral-400">{row.detail}</span>
               <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-emerald-400 uppercase">
                 <span className="size-1.5 rounded-full bg-emerald-400" />
                 {row.state}

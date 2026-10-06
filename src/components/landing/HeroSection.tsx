@@ -30,7 +30,7 @@ export default function HeroSection() {
 
           <h1
             data-enter="body"
-            className="text-4xl leading-[1.05] font-medium tracking-tight text-neutral-50 sm:text-5xl lg:text-6xl"
+            className="text-3xl leading-[1.1] font-medium tracking-tight text-neutral-50 sm:text-4xl lg:text-5xl"
           >
             A starting point that is already wired.
           </h1>
@@ -52,17 +52,9 @@ export default function HeroSection() {
                 →
               </span>
             </Button>
-            <a
-              href="https://github.com/madearga/tanstackboilerplate"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="rounded-md px-2 py-3 text-sm text-neutral-400 transition-colors duration-150 hover:text-neutral-100"
-            >
-              Read the source
-            </a>
           </div>
 
-          <div data-enter="body" className="mt-10 max-w-xl">
+          <div data-enter="body" className="mt-9 max-w-xl">
             <CommandChip command={CLONE} label="or start from the terminal" />
           </div>
         </div>
